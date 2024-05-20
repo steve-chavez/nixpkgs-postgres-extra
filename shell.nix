@@ -15,6 +15,7 @@ mkShell {
       ];
       pgWithExts = { postgresql }: postgresql.withPackages (p: [
         (callPackage ./ext/conninfo.nix { inherit postgresql; })
+        (callPackage ./ext/nextgres-idcp.nix { inherit postgresql; })
       ]);
       withTmpPgExts = map (postgresql: callPackage ./scripts/withTmpPg.nix { postgresql = pgWithExts { inherit postgresql;}; }) supportedPgs;
     in
