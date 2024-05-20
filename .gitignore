@@ -1,0 +1,6 @@
+*.o
+results/
+.history
+*.so
+*.bc
+tags

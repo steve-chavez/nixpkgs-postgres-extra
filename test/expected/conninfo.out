@@ -1,0 +1,12 @@
+create extension if not exists conninfo;
+select * from conninfo_parse('postgresql://user:pass@localhost:5432/postgres?target_session_attrs=read-write');
+       keyword        |   value    
+----------------------+------------
+ user                 | user
+ password             | pass
+ dbname               | postgres
+ host                 | localhost
+ port                 | 5432
+ target_session_attrs | read-write
+(6 rows)
+
