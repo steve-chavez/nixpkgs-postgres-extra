@@ -7,14 +7,15 @@ mkShell {
   buildInputs =
     let
       supportedPgs = [
-        postgresql_16
-        postgresql_15
-        postgresql_14
+        #postgresql_16
+        #postgresql_15
+        #postgresql_14
         postgresql_13
         postgresql_12
       ];
       pgWithExts = { postgresql }: postgresql.withPackages (p: [
         (callPackage ./ext/conninfo.nix { inherit postgresql; })
+        (callPackage ./ext/pg_backtrace.nix { inherit postgresql; })
       ]);
       withTmpPgExts = map (postgresql: callPackage ./scripts/withTmpPg.nix { postgresql = pgWithExts { inherit postgresql;}; }) supportedPgs;
     in
